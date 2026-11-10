@@ -104,7 +104,10 @@ def _ask(state: State, status: Status, awaiting: Optional[str], slots: Optional[
     """Reply with a question and remember what we are waiting for. Gives up after MAX_ATTEMPTS."""
     attempts = state.attempts + 1
     if attempts >= MAX_ATTEMPTS:
-        return Reply([(Status.NOT_UNDERSTOOD, {})], State())
+        # If we were collecting a crop, keep the response crop-specific instead
+        # of falling back to the generic "I did not understand" message.
+        final_status = Status.CROP_NOT_RECOGNIZED if awaiting == "crop" else Status.NOT_UNDERSTOOD
+        return Reply([(final_status, {})], State())
     return Reply([(status, slots or {})], replace(state, awaiting=awaiting, attempts=attempts))
 
 
@@ -180,6 +183,19 @@ def step(
         state.day = p["day"]
 
     # 3. Decide, most urgent problem first.
+    # An explicit crop-like phrase ("banana price", "bajra ka bhav", etc.)
+    # whose crop token is absent from our alias dictionary gets a precise
+    # crop-recognition response. Keep the mandi in state so the farmer can
+    # simply reply with a supported crop and continue the same request.
+    if p.get("crop_candidate"):
+        state.crop, state.crop_score = None, 0
+        return _ask(state, Status.CROP_NOT_RECOGNIZED, "crop")
+
+    # When we have just asked for a crop, a reply that still does not match
+    # any known crop is a crop-recognition failure, not a generic NLP failure.
+    if state.awaiting == "crop" and p["crop"] is None and not ambiguous:
+        return _ask(state, Status.CROP_NOT_RECOGNIZED, "crop")
+
     if ambiguous:
         return _ask(state, Status.CLARIFY_CROP, "crop")
     if state.crop is None and not state.mandis:

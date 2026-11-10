@@ -78,7 +78,8 @@ TEXT = {
     "fallback_mandi": "{asked} ਦਾ ਭਾਅ ਨਹੀਂ ਮਿਲਿਆ, ਇਸ ਲਈ ਨੇੜਲੀ ਮੰਡੀ {used} ਦਾ ਭਾਅ ਦੱਸਿਆ ਜਾ ਰਿਹਾ ਹੈ।",
     "fallback_day": "ਮੰਗੇ ਗਏ ਦਿਨ ਦਾ ਭਾਅ ਨਹੀਂ ਮਿਲਿਆ।",
     # --- questions back to the farmer ---
-    "clarify_crop": "ਤੁਸੀਂ ਕਿਸ ਫ਼ਸਲ ਦਾ ਭਾਅ ਪੁੱਛ ਰਹੇ ਹੋ? {options} ਵਿੱਚੋਂ ਦੱਸੋ।",
+    "clarify_crop": "ਮਾਫ਼ ਕਰਨਾ, ਤੁਹਾਡੇ ਸਵਾਲ ਵਿੱਚ ਫ਼ਸਲ ਦਾ ਨਾਮ ਨਹੀਂ ਮਿਲਿਆ। ਕਿਰਪਾ ਕਰਕੇ {options} ਵਿੱਚੋਂ ਇੱਕ ਫ਼ਸਲ ਦੱਸੋ।",
+    "crop_not_recognized": "ਮਾਫ਼ ਕਰਨਾ, ਮੈਂ ਦੱਸੇ ਗਏ ਫ਼ਸਲ ਦੇ ਨਾਮ ਨੂੰ ਪਛਾਣ ਨਹੀਂ ਸਕਿਆ। ਕਿਰਪਾ ਕਰਕੇ {options} ਵਿੱਚੋਂ ਇੱਕ ਫ਼ਸਲ ਦੱਸੋ।",
     "clarify_mandi": "ਤੁਸੀਂ ਕਿਸ ਮੰਡੀ ਦਾ ਭਾਅ ਜਾਣਨਾ ਚਾਹੁੰਦੇ ਹੋ? ਜਿਵੇਂ {examples}।",
     "confirm": "ਕੀ ਤੁਸੀਂ {mandi} ਵਿੱਚ {crop} ਦਾ ਭਾਅ ਪੁੱਛ ਰਹੇ ਹੋ? ਹਾਂ ਜਾਂ ਨਹੀਂ ਕਹੋ।",
     # --- honest "we do not have it" replies ---
@@ -167,6 +168,12 @@ def clarify_crop(options: Sequence[str] = SUPPORTED_CROPS) -> str:
     return TEXT["clarify_crop"].format(options=_join_pa(names, CONJ_OR))
 
 
+def crop_not_recognized(options: Sequence[str] = SUPPORTED_CROPS) -> str:
+    """Tell the user that a supplied crop word could not be identified."""
+    names = [crop_pa(c) for c in options]
+    return TEXT["crop_not_recognized"].format(options=_join_pa(names, CONJ_OR))
+
+
 def clarify_mandi(examples: Sequence[str] = DEFAULT_MANDI_EXAMPLES) -> str:
     names = [mandi_pa(m) for m in examples]
     return TEXT["clarify_mandi"].format(examples=_join_pa(names, CONJ_OR))
@@ -204,6 +211,7 @@ def error() -> str:
 class Status(str, Enum):
     ANSWER = "answer"
     CLARIFY_CROP = "clarify_crop"
+    CROP_NOT_RECOGNIZED = "crop_not_recognized"
     CLARIFY_MANDI = "clarify_mandi"
     CONFIRM = "confirm"
     NO_DATA_CROP = "no_data_crop"
@@ -216,6 +224,7 @@ class Status(str, Enum):
 RENDERERS = {
     Status.ANSWER: answer,
     Status.CLARIFY_CROP: clarify_crop,
+    Status.CROP_NOT_RECOGNIZED: crop_not_recognized,
     Status.CLARIFY_MANDI: clarify_mandi,
     Status.CONFIRM: confirm,
     Status.NO_DATA_CROP: no_data_crop,

@@ -10,8 +10,9 @@ Term: STATUS (what the agent controller should do next)
   confirm         a slot was found only by a fuzzy match -> repeat it back to the farmer first
   need_mandi      crop found, mandi missing -> ask "which mandi?"
   need_crop       mandi found, crop missing -> ask "which crop?"
-  ambiguous_crop  two different crops matched about equally -> ask which one
-  unknown         nothing recognised -> ask to repeat
+  ambiguous_crop      two different crops matched about equally -> ask which one
+  crop_not_recognized explicit crop-like phrase, but its crop word is unknown
+  unknown             nothing recognised -> ask to repeat
 
 The STT gives no confidence score, so doubt can only come from these match scores.
 """
@@ -53,6 +54,60 @@ def _find_unsupported_crops(text: str) -> dict:
             found[crop] = 100
     return found
 
+
+# Patterns used only to detect a crop-like slot whose value is not in our alias
+# table. We deliberately require a crop/price construction so ordinary words
+# such as "hello" or the phrase "what is the price" are not treated as crops.
+_UNKNOWN_CROP_PATTERNS = (
+    # English: "price of banana", "rate for quinoa", "banana price"
+    re.compile(r"\b(?:price|rate|bhaav|bhav|keemat)\s+(?:of|for)\s+(?P<candidate>[^\s]+)"),
+    re.compile(r"(?P<candidate>[^\s]+)\s+(?:price|rate|bhaav|bhav)\b"),
+    # Punglish: "banana ka kya rate", "quinoa da bhaav"
+    re.compile(r"(?P<candidate>[^\s]+)\s+(?:ka|ki|ke|da|di|de)\s+(?:kya\s+)?(?:rate|price|bhaav|bhav|keemat)\b"),
+    # Hindi: "bajra ka bhav", "jowar ki keemat"
+    re.compile(r"(?P<candidate>[^\s]+)\s+(?:का|की|के)\s+(?:क्या\s+)?(?:रेट|भाव|कीमत)\b"),
+    # Punjabi: "ਕੇਲੇ ਦਾ ਰੇਟ", "ਬਾਜਰੇ ਦਾ ਭਾਅ"
+    re.compile(r"(?P<candidate>[^\s]+)\s+(?:ਦਾ|ਦੀ|ਦੇ)\s+(?:ਰੇਟ|ਭਾਅ|ਕੀਮਤ)\b"),
+)
+
+_UNKNOWN_CROP_STOPWORDS = frozenset({
+    "what", "which", "when", "where", "who", "how", "much", "is", "are",
+    "was", "were", "the", "a", "an", "in", "at", "of", "for", "to",
+    "with", "and", "today", "please", "tell", "me", "price", "rate",
+    "bhaav", "bhav", "keemat", "ka", "ki", "ke", "da", "di", "de",
+    "kya", "hai", "mein", "main", "mandi", "market", "today",
+})
+
+
+def _find_unrecognized_crop_candidate(text: str, crop_matches: dict):
+    """Return an explicit but unknown crop token, or None.
+
+    This is intentionally conservative: it only activates when the utterance
+    has a crop-price phrase. A missing crop ("price in Jalandhar?") remains a
+    normal clarification, not a false claim that an unknown crop was spoken.
+    """
+    if crop_matches:
+        return None  # supported and known-but-unsupported crops take precedence
+
+    norm = normalize(text)
+    mandi_tokens = set()
+    for entry in MANDIS.values():
+        for alias in entry["aliases"]:
+            mandi_tokens.update(normalize(alias).split())
+
+    for pattern in _UNKNOWN_CROP_PATTERNS:
+        match = pattern.search(norm)
+        if not match:
+            continue
+        candidate = match.group("candidate").strip().strip("-_")
+        candidate_norm = normalize(candidate)
+        if not candidate_norm or candidate_norm in _UNKNOWN_CROP_STOPWORDS:
+            continue
+        if candidate_norm in mandi_tokens:
+            continue
+        return candidate_norm
+    return None
+
 _TODAY = {"ਅੱਜ", "ਅਜ", "aaj", "aj", "ajj", "आज", "today"}
 _KAL = {"ਕੱਲ੍ਹ", "ਕੱਲ", "ਕੱਲ੍ਹ", "kal", "कल", "yesterday"}
 _PAST = {"tha", "thi", "the", "था", "थी", "थे", "ਸੀ", "ਸੀ", "ਸੀਗਾ"}
@@ -78,6 +133,7 @@ def parse(text: str) -> dict:
     crops = find_all(crop_text, CROPS)
     crops.update(_find_unsupported_crops(text))
     mandis = find_all(text, MANDIS)
+    crop_candidate = _find_unrecognized_crop_candidate(text, crops)
 
     crop, crop_score, ambiguous = None, 0, False
     if crops:
@@ -89,7 +145,9 @@ def parse(text: str) -> dict:
     compare_word = bool(set(toks) & {normalize(x) for x in _COMPARE})
     intent = "compare" if (compare_word or len(mlist) >= 2) else "price"
 
-    if not crop and not mlist:
+    if crop_candidate:
+        status = "crop_not_recognized"
+    elif not crop and not mlist:
         status = "unknown"
     elif ambiguous:
         status = "ambiguous_crop"
@@ -103,6 +161,7 @@ def parse(text: str) -> dict:
         status = "ok"
 
     return {"intent": intent, "crop": None if ambiguous else crop, "crop_score": crop_score,
+            "crop_candidate": crop_candidate,
             "mandis": [m for m, _ in mlist], "mandi_scores": [s for _, s in mlist],
             "day": _day(toks), "status": status, "text": text}
 
