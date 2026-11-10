@@ -1,0 +1,1364 @@
+{
+  "meta": {
+    "run_at": "2026-11-10T02:51:56+05:30",
+    "mode": "audio+text",
+    "python": "3.13.3",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "labels_file": "eval/heldout_labels.json",
+    "clips_dir": "eval/heldout",
+    "stt_config_requested": "(stt.py default)",
+    "stt_config_used": "paen_codemix_ctx",
+    "warmup": true,
+    "fingerprints": {
+      "app/aliases.py": "da458bbaa623",
+      "app/parser.py": "e8f608a3d116",
+      "app/agent.py": "0fe1c5898f37",
+      "app/lookup.py": "1c5f38fe8bfb",
+      "app/templates.py": "3c5d91e3882f",
+      "app/stt.py": "a654bb0cbfc8",
+      "data/mandi.db": "542098bef2b8"
+    }
+  },
+  "summary": {
+    "n": 18,
+    "has_audio": true,
+    "text": {
+      "crop_ok": [
+        18,
+        18
+      ],
+      "mandi_ok": [
+        18,
+        18
+      ],
+      "slots_ok": [
+        18,
+        18
+      ],
+      "status_ok": [
+        18,
+        18
+      ],
+      "day_ok": [
+        1,
+        2
+      ]
+    },
+    "text_by_group": {
+      "answer": {
+        "n": 9,
+        "slots_ok": 9,
+        "status_ok": 9
+      },
+      "clarify": {
+        "n": 3,
+        "slots_ok": 3,
+        "status_ok": 3
+      },
+      "unsupported": {
+        "n": 6,
+        "slots_ok": 6,
+        "status_ok": 6
+      }
+    },
+    "text_by_style": {
+      "punglish": {
+        "n": 9,
+        "slots_ok": 9,
+        "status_ok": 9
+      },
+      "punjabi": {
+        "n": 9,
+        "slots_ok": 9,
+        "status_ok": 9
+      }
+    },
+    "audio": {
+      "crop_ok": [
+        18,
+        18
+      ],
+      "mandi_ok": [
+        18,
+        18
+      ],
+      "slots_ok": [
+        18,
+        18
+      ],
+      "status_ok": [
+        18,
+        18
+      ],
+      "day_ok": [
+        2,
+        2
+      ]
+    },
+    "audio_by_group": {
+      "answer": {
+        "n": 9,
+        "slots_ok": 9,
+        "status_ok": 9
+      },
+      "clarify": {
+        "n": 3,
+        "slots_ok": 3,
+        "status_ok": 3
+      },
+      "unsupported": {
+        "n": 6,
+        "slots_ok": 6,
+        "status_ok": 6
+      }
+    },
+    "audio_by_style": {
+      "punglish": {
+        "n": 9,
+        "slots_ok": 9,
+        "status_ok": 9
+      },
+      "punjabi": {
+        "n": 9,
+        "slots_ok": 9,
+        "status_ok": 9
+      }
+    },
+    "attribution": {
+      "ok": 18
+    },
+    "stt_errors": [],
+    "mismatches": [],
+    "latency": {
+      "stt_client": {
+        "n": 18,
+        "p50": 0.733205700002145,
+        "p95": 0.9612679400132034,
+        "max": 1.1875223000533879
+      },
+      "stt_convert": {
+        "n": 18,
+        "p50": 0.13868590001948178,
+        "p95": 1.4949151400302039,
+        "max": 3.474374399986118
+      },
+      "stt_api": {
+        "n": 18,
+        "p50": 0.15357959270477295,
+        "p95": 0.18500330448150631,
+        "max": 0.19757485389709473
+      },
+      "stt_server": {
+        "n": 18,
+        "p50": 0.15079855918884277,
+        "p95": 0.18319020271301267,
+        "max": 0.1959526538848877
+      },
+      "agent": {
+        "n": 18,
+        "p50": 0.007295899966266006,
+        "p95": 0.022644975082948802,
+        "max": 0.023451199987903237
+      }
+    }
+  },
+  "records": [
+    {
+      "id": "p01",
+      "group": "answer",
+      "style": "punjabi",
+      "said": "ਲੁਧਿਆਣਾ ਮੰਡੀ ਵਿੱਚ ਆਲੂ ਦਾ ਭਾਅ ਕੀ ਚੱਲ ਰਿਹਾ ਹੈ?",
+      "expected": {
+        "crop": "potato",
+        "mandi": "ludhiana",
+        "status": "answer",
+        "day": null
+      },
+      "text": {
+        "text": "ਲੁਧਿਆਣਾ ਮੰਡੀ ਵਿੱਚ ਆਲੂ ਦਾ ਭਾਅ ਕੀ ਚੱਲ ਰਿਹਾ ਹੈ?",
+        "slots": {
+          "crop": "potato",
+          "mandi": "ludhiana",
+          "day": null
+        },
+        "parser_status": "ok",
+        "status": "answer",
+        "step_seconds": 0.011856500059366226,
+        "error": null,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "audio": {
+        "text": "ਲੁਧਿਆਣਾ ਮੰਡੀ ਵਿੱਚ ਆਲੂ ਦਾ ਭਾਅ ਕੀ ਚੱਲ ਰਿਹਾ ਹੈ?",
+        "slots": {
+          "crop": "potato",
+          "mandi": "ludhiana",
+          "day": null
+        },
+        "parser_status": "ok",
+        "status": "answer",
+        "step_seconds": 0.013029600027948618,
+        "error": null,
+        "transcript": "ਲੁਧਿਆਣਾ ਮੰਡੀ ਵਿੱਚ ਆਲੂ ਦਾ ਭਾਅ ਕੀ ਚੱਲ ਰਿਹਾ ਹੈ?",
+        "timings": {
+          "stt_client": 0.7711832000641152,
+          "stt_convert": 0.12460999994073063,
+          "stt_api": 0.19757485389709473,
+          "stt_server": 0.1959526538848877,
+          "agent": 0.013029600027948618
+        },
+        "config": "paen_codemix_ctx",
+        "request_id": "89103760-3230-406b-bdd2-0dc784e924bf",
+        "detected_language": "pa-IN",
+        "truncated": false,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "attribution": "ok"
+    },
+    {
+      "id": "p02",
+      "group": "answer",
+      "style": "punjabi",
+      "said": "ਜਲੰਧਰ ਦੀ ਮੰਡੀ ਵਿੱਚ ਪਿਆਜ਼ ਦਾ ਰੇਟ ਦੱਸੋ ਜੀ",
+      "expected": {
+        "crop": "onion",
+        "mandi": "jalandhar",
+        "status": "answer",
+        "day": null
+      },
+      "text": {
+        "text": "ਜਲੰਧਰ ਦੀ ਮੰਡੀ ਵਿੱਚ ਪਿਆਜ਼ ਦਾ ਰੇਟ ਦੱਸੋ ਜੀ",
+        "slots": {
+          "crop": "onion",
+          "mandi": "jalandhar",
+          "day": null
+        },
+        "parser_status": "ok",
+        "status": "answer",
+        "step_seconds": 0.0117637999355793,
+        "error": null,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "audio": {
+        "text": "ਜਲੰਧਰ ਦੀ ਮੰਡੀ ਵਿੱਚ ਪਿਆਜ਼ ਦਾ rate ਦੱਸੋ ਜੀ।",
+        "slots": {
+          "crop": "onion",
+          "mandi": "jalandhar",
+          "day": null
+        },
+        "parser_status": "ok",
+        "status": "answer",
+        "step_seconds": 0.023451199987903237,
+        "error": null,
+        "transcript": "ਜਲੰਧਰ ਦੀ ਮੰਡੀ ਵਿੱਚ ਪਿਆਜ਼ ਦਾ rate ਦੱਸੋ ਜੀ।",
+        "timings": {
+          "stt_client": 0.9213407000061125,
+          "stt_convert": 0.08562539995182306,
+          "stt_api": 0.1721963882446289,
+          "stt_server": 0.17061781883239746,
+          "agent": 0.023451199987903237
+        },
+        "config": "paen_codemix_ctx",
+        "request_id": "77e506e2-912f-4bb3-92fc-8bb755163c92",
+        "detected_language": "pa-IN",
+        "truncated": false,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "attribution": "ok"
+    },
+    {
+      "id": "p03",
+      "group": "answer",
+      "style": "punjabi",
+      "said": "ਖੰਨਾ ਮੰਡੀ ਵਿੱਚ ਟਮਾਟਰ ਕਿਸ ਭਾਅ ਵਿਕ ਰਹੇ ਹਨ?",
+      "expected": {
+        "crop": "tomato",
+        "mandi": "khanna",
+        "status": "answer",
+        "day": null
+      },
+      "text": {
+        "text": "ਖੰਨਾ ਮੰਡੀ ਵਿੱਚ ਟਮਾਟਰ ਕਿਸ ਭਾਅ ਵਿਕ ਰਹੇ ਹਨ?",
+        "slots": {
+          "crop": "tomato",
+          "mandi": "khanna",
+          "day": null
+        },
+        "parser_status": "ok",
+        "status": "answer",
+        "step_seconds": 0.02937730005942285,
+        "error": null,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "audio": {
+        "text": "ਖੰਨਾ ਮੰਡੀ ਵਿੱਚ ਟਮਾਟਰ ਕਿਸ ਭਾਅ ਵਿਕ ਰਹੇ ਹਨ?",
+        "slots": {
+          "crop": "tomato",
+          "mandi": "khanna",
+          "day": null
+        },
+        "parser_status": "ok",
+        "status": "answer",
+        "step_seconds": 0.02250270009972155,
+        "error": null,
+        "transcript": "ਖੰਨਾ ਮੰਡੀ ਵਿੱਚ ਟਮਾਟਰ ਕਿਸ ਭਾਅ ਵਿਕ ਰਹੇ ਹਨ?",
+        "timings": {
+          "stt_client": 1.1875223000533879,
+          "stt_convert": 0.31340059998910874,
+          "stt_api": 0.1827847957611084,
+          "stt_server": 0.1809380054473877,
+          "agent": 0.02250270009972155
+        },
+        "config": "paen_codemix_ctx",
+        "request_id": "bb964c03-37e6-4c6c-bcf5-762f4bdc42b9",
+        "detected_language": "pa-IN",
+        "truncated": false,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "attribution": "ok"
+    },
+    {
+      "id": "p04",
+      "group": "answer",
+      "style": "punjabi",
+      "said": "ਪਟਿਆਲਾ ਵਿੱਚ ਆਲੂ ਕਿੰਨੇ ਦਾ ਹੈ?",
+      "expected": {
+        "crop": "potato",
+        "mandi": "patiala",
+        "status": "answer",
+        "day": null
+      },
+      "text": {
+        "text": "ਪਟਿਆਲਾ ਵਿੱਚ ਆਲੂ ਕਿੰਨੇ ਦਾ ਹੈ?",
+        "slots": {
+          "crop": "potato",
+          "mandi": "patiala",
+          "day": null
+        },
+        "parser_status": "ok",
+        "status": "answer",
+        "step_seconds": 0.022574500064365566,
+        "error": null,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "audio": {
+        "text": "ਪਟਿਆਲਾ ਵਿੱਚ ਆਲੂ ਕਿੰਨੇ ਦਾ ਹੈ?",
+        "slots": {
+          "crop": "potato",
+          "mandi": "patiala",
+          "day": null
+        },
+        "parser_status": "ok",
+        "status": "answer",
+        "step_seconds": 0.012191600049845874,
+        "error": null,
+        "transcript": "ਪਟਿਆਲਾ ਵਿੱਚ ਆਲੂ ਕਿੰਨੇ ਦਾ ਹੈ?",
+        "timings": {
+          "stt_client": 0.9075689999153838,
+          "stt_convert": 0.16311610001139343,
+          "stt_api": 0.13393306732177734,
+          "stt_server": 0.13271117210388184,
+          "agent": 0.012191600049845874
+        },
+        "config": "paen_codemix_ctx",
+        "request_id": "c63e27d2-d7c0-49f4-b798-15f8e15aaac6",
+        "detected_language": "pa-IN",
+        "truncated": false,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "attribution": "ok"
+    },
+    {
+      "id": "p05",
+      "group": "answer",
+      "style": "punjabi",
+      "said": "ਕੱਲ੍ਹ ਜਲੰਧਰ ਵਿੱਚ ਪਿਆਜ਼ ਦਾ ਕੀ ਭਾਅ ਸੀ?",
+      "expected": {
+        "crop": "onion",
+        "mandi": "jalandhar",
+        "status": "answer",
+        "day": "yesterday"
+      },
+      "text": {
+        "text": "ਕੱਲ੍ਹ ਜਲੰਧਰ ਵਿੱਚ ਪਿਆਜ਼ ਦਾ ਕੀ ਭਾਅ ਸੀ?",
+        "slots": {
+          "crop": "onion",
+          "mandi": "jalandhar",
+          "day": "yesterday"
+        },
+        "parser_status": "ok",
+        "status": "answer",
+        "step_seconds": 0.01139929995406419,
+        "error": null,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": true
+        }
+      },
+      "audio": {
+        "text": "ਕੱਲ੍ਹ ਜਲੰਧਰ ਵਿੱਚ ਪਿਆਜ਼ ਦਾ ਕੀ ਭਾਅ ਸੀ?",
+        "slots": {
+          "crop": "onion",
+          "mandi": "jalandhar",
+          "day": "yesterday"
+        },
+        "parser_status": "ok",
+        "status": "answer",
+        "step_seconds": 0.0107282999670133,
+        "error": null,
+        "transcript": "ਕੱਲ੍ਹ ਜਲੰਧਰ ਵਿੱਚ ਪਿਆਜ਼ ਦਾ ਕੀ ਭਾਅ ਸੀ?",
+        "timings": {
+          "stt_client": 0.7305285000475124,
+          "stt_convert": 0.25691130000632256,
+          "stt_api": 0.17169690132141113,
+          "stt_server": 0.17018532752990723,
+          "agent": 0.0107282999670133
+        },
+        "config": "paen_codemix_ctx",
+        "request_id": "fef24b2d-64a4-48dd-b628-c5ed558c9d03",
+        "detected_language": "pa-IN",
+        "truncated": false,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": true
+        }
+      },
+      "attribution": "ok"
+    },
+    {
+      "id": "l01",
+      "group": "answer",
+      "style": "punglish",
+      "said": "Patiala mandi vich tamatar da rate ki chal reha hai",
+      "expected": {
+        "crop": "tomato",
+        "mandi": "patiala",
+        "status": "answer",
+        "day": null
+      },
+      "text": {
+        "text": "Patiala mandi vich tamatar da rate ki chal reha hai",
+        "slots": {
+          "crop": "tomato",
+          "mandi": "patiala",
+          "day": null
+        },
+        "parser_status": "ok",
+        "status": "answer",
+        "step_seconds": 0.010869899997487664,
+        "error": null,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "audio": {
+        "text": "ਪਟਿਆਲਾ ਮੰਡੀ ਵਿੱਚ ਟਮਾਟਰ ਦਾ rate ਕੀ ਚੱਲ ਰਿਹਾ ਹੈ?",
+        "slots": {
+          "crop": "tomato",
+          "mandi": "patiala",
+          "day": null
+        },
+        "parser_status": "ok",
+        "status": "answer",
+        "step_seconds": 0.010715499985963106,
+        "error": null,
+        "transcript": "ਪਟਿਆਲਾ ਮੰਡੀ ਵਿੱਚ ਟਮਾਟਰ ਦਾ rate ਕੀ ਚੱਲ ਰਿਹਾ ਹੈ?",
+        "timings": {
+          "stt_client": 0.7469202000647783,
+          "stt_convert": 0.08468750002793968,
+          "stt_api": 0.18085074424743652,
+          "stt_server": 0.17948389053344727,
+          "agent": 0.010715499985963106
+        },
+        "config": "paen_codemix_ctx",
+        "request_id": "479a8dde-9532-4b54-9dc0-380dc37815b2",
+        "detected_language": "pa-IN",
+        "truncated": false,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "attribution": "ok"
+    },
+    {
+      "id": "l02",
+      "group": "answer",
+      "style": "punglish",
+      "said": "Bro Ludhiana mein pyaaz ka price batao",
+      "expected": {
+        "crop": "onion",
+        "mandi": "ludhiana",
+        "status": "answer",
+        "day": null
+      },
+      "text": {
+        "text": "Bro Ludhiana mein pyaaz ka price batao",
+        "slots": {
+          "crop": "onion",
+          "mandi": "ludhiana",
+          "day": null
+        },
+        "parser_status": "ok",
+        "status": "answer",
+        "step_seconds": 0.01067619991954416,
+        "error": null,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "audio": {
+        "text": "bro, Ludhiana ਮੇਂ ਪਿਆਜ਼ ਕਾ price ਬਤਾਓ?",
+        "slots": {
+          "crop": "onion",
+          "mandi": "ludhiana",
+          "day": null
+        },
+        "parser_status": "ok",
+        "status": "answer",
+        "step_seconds": 0.010605100076645613,
+        "error": null,
+        "transcript": "bro, Ludhiana ਮੇਂ ਪਿਆਜ਼ ਕਾ price ਬਤਾਓ?",
+        "timings": {
+          "stt_client": 0.868529099971056,
+          "stt_convert": 0.14387260004878044,
+          "stt_api": 0.15321660041809082,
+          "stt_server": 0.15196752548217773,
+          "agent": 0.010605100076645613
+        },
+        "config": "paen_codemix_ctx",
+        "request_id": "02db4476-4f7c-46ac-9bcc-4298b70d8d43",
+        "detected_language": "pa-IN",
+        "truncated": false,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "attribution": "ok"
+    },
+    {
+      "id": "l03",
+      "group": "answer",
+      "style": "punglish",
+      "said": "Jalandhar mandi mein tomato ka bhav kya hai",
+      "expected": {
+        "crop": "tomato",
+        "mandi": "jalandhar",
+        "status": "answer",
+        "day": null
+      },
+      "text": {
+        "text": "Jalandhar mandi mein tomato ka bhav kya hai",
+        "slots": {
+          "crop": "tomato",
+          "mandi": "jalandhar",
+          "day": null
+        },
+        "parser_status": "ok",
+        "status": "answer",
+        "step_seconds": 0.010578199988231063,
+        "error": null,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "audio": {
+        "text": "ਜਲੰਧਰ ਮੰਡੀ ਮੇਂ tomato ਕਾ ਭਾਅ ਕਿਆ ਹੈ?",
+        "slots": {
+          "crop": "tomato",
+          "mandi": "jalandhar",
+          "day": null
+        },
+        "parser_status": "ok",
+        "status": "answer",
+        "step_seconds": 0.010647900053299963,
+        "error": null,
+        "transcript": "ਜਲੰਧਰ ਮੰਡੀ ਮੇਂ tomato ਕਾ ਭਾਅ ਕਿਆ ਹੈ?",
+        "timings": {
+          "stt_client": 0.7118330999510363,
+          "stt_convert": 0.06783069996163249,
+          "stt_api": 0.16504192352294922,
+          "stt_server": 0.16330313682556152,
+          "agent": 0.010647900053299963
+        },
+        "config": "paen_codemix_ctx",
+        "request_id": "39cb7c6c-5774-44e5-a92c-60a2a04ab7f2",
+        "detected_language": "pa-IN",
+        "truncated": false,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "attribution": "ok"
+    },
+    {
+      "id": "l04",
+      "group": "answer",
+      "style": "punglish",
+      "said": "Yesterday Khanna ch potato da rate kinna si",
+      "expected": {
+        "crop": "potato",
+        "mandi": "khanna",
+        "status": "answer",
+        "day": "yesterday"
+      },
+      "text": {
+        "text": "Yesterday Khanna ch potato da rate kinna si",
+        "slots": {
+          "crop": "potato",
+          "mandi": "khanna",
+          "day": null
+        },
+        "parser_status": "ok",
+        "status": "answer",
+        "step_seconds": 0.01034160004928708,
+        "error": null,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": false
+        }
+      },
+      "audio": {
+        "text": "Yesterday ਖੰਨਾ ਚ potato ਦਾ rate ਕਿੰਨਾ ਸੀ?",
+        "slots": {
+          "crop": "potato",
+          "mandi": "khanna",
+          "day": "yesterday"
+        },
+        "parser_status": "ok",
+        "status": "answer",
+        "step_seconds": 0.010588399949483573,
+        "error": null,
+        "transcript": "Yesterday ਖੰਨਾ ਚ potato ਦਾ rate ਕਿੰਨਾ ਸੀ?",
+        "timings": {
+          "stt_client": 0.6722231999738142,
+          "stt_convert": 0.1455664000241086,
+          "stt_api": 0.13242197036743164,
+          "stt_server": 0.1307225227355957,
+          "agent": 0.010588399949483573
+        },
+        "config": "paen_codemix_ctx",
+        "request_id": "2d1416ee-5bdc-4ab7-bcc0-6b207112ddf6",
+        "detected_language": "pa-IN",
+        "truncated": false,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": true
+        }
+      },
+      "attribution": "ok"
+    },
+    {
+      "id": "p06",
+      "group": "clarify",
+      "style": "punjabi",
+      "said": "ਆਲੂ ਦਾ ਰੇਟ ਕੀ ਹੈ?",
+      "expected": {
+        "crop": "potato",
+        "mandi": null,
+        "status": "clarify_mandi",
+        "day": null
+      },
+      "text": {
+        "text": "ਆਲੂ ਦਾ ਰੇਟ ਕੀ ਹੈ?",
+        "slots": {
+          "crop": "potato",
+          "mandi": null,
+          "day": null
+        },
+        "parser_status": "need_mandi",
+        "status": "clarify_mandi",
+        "step_seconds": 0.001245599938556552,
+        "error": null,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "audio": {
+        "text": "ਆਲੂ ਦਾ rate ਕੀ ਹੈ?",
+        "slots": {
+          "crop": "potato",
+          "mandi": null,
+          "day": null
+        },
+        "parser_status": "need_mandi",
+        "status": "clarify_mandi",
+        "step_seconds": 0.0021400999976322055,
+        "error": null,
+        "transcript": "ਆਲੂ ਦਾ rate ਕੀ ਹੈ?",
+        "timings": {
+          "stt_client": 0.6623841000255197,
+          "stt_convert": 0.06551109999418259,
+          "stt_api": 0.09230661392211914,
+          "stt_server": 0.09060430526733398,
+          "agent": 0.0021400999976322055
+        },
+        "config": "paen_codemix_ctx",
+        "request_id": "cc21db4b-a783-4532-86a7-82efde99a66a",
+        "detected_language": "pa-IN",
+        "truncated": false,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "attribution": "ok"
+    },
+    {
+      "id": "l05",
+      "group": "clarify",
+      "style": "punglish",
+      "said": "Pyaaz da rate ki chal reha hai",
+      "expected": {
+        "crop": "onion",
+        "mandi": null,
+        "status": "clarify_mandi",
+        "day": null
+      },
+      "text": {
+        "text": "Pyaaz da rate ki chal reha hai",
+        "slots": {
+          "crop": "onion",
+          "mandi": null,
+          "day": null
+        },
+        "parser_status": "need_mandi",
+        "status": "clarify_mandi",
+        "step_seconds": 0.0015059999423101544,
+        "error": null,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "audio": {
+        "text": "ਪਿਆਜ਼ ਦਾ rate ਕੀ ਚੱਲ ਰਿਹਾ ਹੈ?",
+        "slots": {
+          "crop": "onion",
+          "mandi": null,
+          "day": null
+        },
+        "parser_status": "need_mandi",
+        "status": "clarify_mandi",
+        "step_seconds": 0.00147280003875494,
+        "error": null,
+        "transcript": "ਪਿਆਜ਼ ਦਾ rate ਕੀ ਚੱਲ ਰਿਹਾ ਹੈ?",
+        "timings": {
+          "stt_client": 0.7302030000137165,
+          "stt_convert": 0.13349919999018312,
+          "stt_api": 0.13750338554382324,
+          "stt_server": 0.13610053062438965,
+          "agent": 0.00147280003875494
+        },
+        "config": "paen_codemix_ctx",
+        "request_id": "2bf6a823-303e-467b-b13a-ef6ced20383a",
+        "detected_language": "pa-IN",
+        "truncated": false,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "attribution": "ok"
+    },
+    {
+      "id": "l06",
+      "group": "clarify",
+      "style": "punglish",
+      "said": "Ludhiana mandi da rate dasso",
+      "expected": {
+        "crop": null,
+        "mandi": "ludhiana",
+        "status": "clarify_crop",
+        "day": null
+      },
+      "text": {
+        "text": "Ludhiana mandi da rate dasso",
+        "slots": {
+          "crop": null,
+          "mandi": "ludhiana",
+          "day": null
+        },
+        "parser_status": "need_crop",
+        "status": "clarify_crop",
+        "step_seconds": 0.00156739994417876,
+        "error": null,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "audio": {
+        "text": "ਲੁਧਿਆਣਾ ਮੰਡੀ ਦਾ rate ਦੱਸੋ।",
+        "slots": {
+          "crop": null,
+          "mandi": "ludhiana",
+          "day": null
+        },
+        "parser_status": "need_crop",
+        "status": "clarify_crop",
+        "step_seconds": 0.0014486999716609716,
+        "error": null,
+        "transcript": "ਲੁਧਿਆਣਾ ਮੰਡੀ ਦਾ rate ਦੱਸੋ।",
+        "timings": {
+          "stt_client": 0.7221217999467626,
+          "stt_convert": 0.06613060005474836,
+          "stt_api": 0.12343835830688477,
+          "stt_server": 0.12217879295349121,
+          "agent": 0.0014486999716609716
+        },
+        "config": "paen_codemix_ctx",
+        "request_id": "2de243d8-f1eb-4507-845a-806f17beb852",
+        "detected_language": "pa-IN",
+        "truncated": false,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "attribution": "ok"
+    },
+    {
+      "id": "p07",
+      "group": "unsupported",
+      "style": "punjabi",
+      "said": "ਜਲੰਧਰ ਵਿੱਚ ਕਣਕ ਦਾ ਭਾਅ ਦੱਸੋ",
+      "expected": {
+        "crop": "wheat",
+        "mandi": "jalandhar",
+        "status": "no_data_crop",
+        "day": null
+      },
+      "text": {
+        "text": "ਜਲੰਧਰ ਵਿੱਚ ਕਣਕ ਦਾ ਭਾਅ ਦੱਸੋ",
+        "slots": {
+          "crop": "wheat",
+          "mandi": "jalandhar",
+          "day": null
+        },
+        "parser_status": "ok",
+        "status": "no_data_crop",
+        "step_seconds": 0.0017164000310003757,
+        "error": null,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "audio": {
+        "text": "ਜਲੰਧਰ ਵਿੱਚ ਕਣਕ ਦਾ ਭਾਅ ਦੱਸੋ।",
+        "slots": {
+          "crop": "wheat",
+          "mandi": "jalandhar",
+          "day": null
+        },
+        "parser_status": "ok",
+        "status": "no_data_crop",
+        "step_seconds": 0.0015313000185415149,
+        "error": null,
+        "transcript": "ਜਲੰਧਰ ਵਿੱਚ ਕਣਕ ਦਾ ਭਾਅ ਦੱਸੋ।",
+        "timings": {
+          "stt_client": 0.6912939000176266,
+          "stt_convert": 0.06989909999538213,
+          "stt_api": 0.1457653045654297,
+          "stt_server": 0.1443183422088623,
+          "agent": 0.0015313000185415149
+        },
+        "config": "paen_codemix_ctx",
+        "request_id": "44bf0921-da82-4dda-af19-ab82ee228c4a",
+        "detected_language": "pa-IN",
+        "truncated": false,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "attribution": "ok"
+    },
+    {
+      "id": "p08",
+      "group": "unsupported",
+      "style": "punjabi",
+      "said": "ਬਰਨਾਲਾ ਮੰਡੀ ਵਿੱਚ ਆਲੂ ਦਾ ਭਾਅ ਕੀ ਹੈ?",
+      "expected": {
+        "crop": "potato",
+        "mandi": "barnala",
+        "status": "no_data_mandi",
+        "day": null
+      },
+      "text": {
+        "text": "ਬਰਨਾਲਾ ਮੰਡੀ ਵਿੱਚ ਆਲੂ ਦਾ ਭਾਅ ਕੀ ਹੈ?",
+        "slots": {
+          "crop": "potato",
+          "mandi": "barnala",
+          "day": null
+        },
+        "parser_status": "ok",
+        "status": "no_data_mandi",
+        "step_seconds": 0.0015677999472245574,
+        "error": null,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "audio": {
+        "text": "ਬਰਨਾਲਾ ਮੰਡੀ ਵਿੱਚ ਆਲੂ ਦਾ ਭਾਅ ਕੀ ਹੈ?",
+        "slots": {
+          "crop": "potato",
+          "mandi": "barnala",
+          "day": null
+        },
+        "parser_status": "ok",
+        "status": "no_data_mandi",
+        "step_seconds": 0.0015968000516295433,
+        "error": null,
+        "transcript": "ਬਰਨਾਲਾ ਮੰਡੀ ਵਿੱਚ ਆਲੂ ਦਾ ਭਾਅ ਕੀ ਹੈ?",
+        "timings": {
+          "stt_client": 0.7500511999242008,
+          "stt_convert": 0.1463787000393495,
+          "stt_api": 0.15394258499145508,
+          "stt_server": 0.1496295928955078,
+          "agent": 0.0015968000516295433
+        },
+        "config": "paen_codemix_ctx",
+        "request_id": "b61fb191-504f-4794-82d1-5e0cdd632e87",
+        "detected_language": "pa-IN",
+        "truncated": false,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "attribution": "ok"
+    },
+    {
+      "id": "p09",
+      "group": "unsupported",
+      "style": "punjabi",
+      "said": "ਪਟਿਆਲਾ ਵਿੱਚ ਨਰਮੇ ਦਾ ਰੇਟ ਦੱਸੋ",
+      "expected": {
+        "crop": "cotton",
+        "mandi": "patiala",
+        "status": "no_data_crop",
+        "day": null
+      },
+      "text": {
+        "text": "ਪਟਿਆਲਾ ਵਿੱਚ ਨਰਮੇ ਦਾ ਰੇਟ ਦੱਸੋ",
+        "slots": {
+          "crop": "cotton",
+          "mandi": "patiala",
+          "day": null
+        },
+        "parser_status": "ok",
+        "status": "no_data_crop",
+        "step_seconds": 0.0017516999505460262,
+        "error": null,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "audio": {
+        "text": "ਪਟਿਆਲਾ ਵਿੱਚ ਨਰਮੇ ਦਾ rate ਦੱਸੋ।",
+        "slots": {
+          "crop": "cotton",
+          "mandi": "patiala",
+          "day": null
+        },
+        "parser_status": "ok",
+        "status": "no_data_crop",
+        "step_seconds": 0.0015504000475630164,
+        "error": null,
+        "transcript": "ਪਟਿਆਲਾ ਵਿੱਚ ਨਰਮੇ ਦਾ rate ਦੱਸੋ।",
+        "timings": {
+          "stt_client": 0.7257901000557467,
+          "stt_convert": 1.1455988000379875,
+          "stt_api": 0.14973926544189453,
+          "stt_server": 0.1484220027923584,
+          "agent": 0.0015504000475630164
+        },
+        "config": "paen_codemix_ctx",
+        "request_id": "3f356775-a646-4ab2-8c70-8d7f76e20556",
+        "detected_language": "pa-IN",
+        "truncated": false,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "attribution": "ok"
+    },
+    {
+      "id": "l07",
+      "group": "unsupported",
+      "style": "punglish",
+      "said": "Moga mandi ch maize da bhaa ki hai",
+      "expected": {
+        "crop": "maize",
+        "mandi": "moga",
+        "status": "no_data_crop",
+        "day": null
+      },
+      "text": {
+        "text": "Moga mandi ch maize da bhaa ki hai",
+        "slots": {
+          "crop": "maize",
+          "mandi": "moga",
+          "day": null
+        },
+        "parser_status": "ok",
+        "status": "no_data_crop",
+        "step_seconds": 0.001665599993430078,
+        "error": null,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "audio": {
+        "text": "Moga ਮੰਡੀ ਚ maize ਦਾ ਭਾਅ ਕੀ ਹੈ?",
+        "slots": {
+          "crop": "maize",
+          "mandi": "moga",
+          "day": null
+        },
+        "parser_status": "ok",
+        "status": "no_data_crop",
+        "step_seconds": 0.0015248999698087573,
+        "error": null,
+        "transcript": "Moga ਮੰਡੀ ਚ maize ਦਾ ਭਾਅ ਕੀ ਹੈ?",
+        "timings": {
+          "stt_client": 0.7310354000655934,
+          "stt_convert": 0.06703030003700405,
+          "stt_api": 0.14075016975402832,
+          "stt_server": 0.13912653923034668,
+          "agent": 0.0015248999698087573
+        },
+        "config": "paen_codemix_ctx",
+        "request_id": "2a2efb28-f14e-40b8-81d1-280faac69548",
+        "detected_language": "pa-IN",
+        "truncated": false,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "attribution": "ok"
+    },
+    {
+      "id": "l08",
+      "group": "unsupported",
+      "style": "punglish",
+      "said": "Sangrur mandi vich pyaaz da rate ki hai",
+      "expected": {
+        "crop": "onion",
+        "mandi": "sangrur",
+        "status": "no_data_mandi",
+        "day": null
+      },
+      "text": {
+        "text": "Sangrur mandi vich pyaaz da rate ki hai",
+        "slots": {
+          "crop": "onion",
+          "mandi": "sangrur",
+          "day": null
+        },
+        "parser_status": "ok",
+        "status": "no_data_mandi",
+        "step_seconds": 0.0015984999481588602,
+        "error": null,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "audio": {
+        "text": "ਸੰਗਰੂਰ ਮੰਡੀ ਵਿੱਚ ਪਿਆਜ਼ ਦਾ rate ਕੀ ਹੈ?",
+        "slots": {
+          "crop": "onion",
+          "mandi": "sangrur",
+          "day": null
+        },
+        "parser_status": "ok",
+        "status": "no_data_mandi",
+        "step_seconds": 0.004003399983048439,
+        "error": null,
+        "transcript": "ਸੰਗਰੂਰ ਮੰਡੀ ਵਿੱਚ ਪਿਆਜ਼ ਦਾ rate ਕੀ ਹੈ?",
+        "timings": {
+          "stt_client": 0.7534983999794349,
+          "stt_convert": 0.41953379998449236,
+          "stt_api": 0.15717577934265137,
+          "stt_server": 0.15585875511169434,
+          "agent": 0.004003399983048439
+        },
+        "config": "paen_codemix_ctx",
+        "request_id": "51111d11-4057-4ffa-b985-1e868ed51981",
+        "detected_language": "pa-IN",
+        "truncated": false,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "attribution": "ok"
+    },
+    {
+      "id": "l09",
+      "group": "unsupported",
+      "style": "punglish",
+      "said": "Jalandhar ch sarson da rate dasso",
+      "expected": {
+        "crop": "mustard",
+        "mandi": "jalandhar",
+        "status": "no_data_crop",
+        "day": null
+      },
+      "text": {
+        "text": "Jalandhar ch sarson da rate dasso",
+        "slots": {
+          "crop": "mustard",
+          "mandi": "jalandhar",
+          "day": null
+        },
+        "parser_status": "ok",
+        "status": "no_data_crop",
+        "step_seconds": 0.0015573999844491482,
+        "error": null,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "audio": {
+        "text": "ਜਲੰਧਰ ਚ ਸਰਸੋਂ ਦਾ rate ਦੱਸੋ।",
+        "slots": {
+          "crop": "mustard",
+          "mandi": "jalandhar",
+          "day": null
+        },
+        "parser_status": "ok",
+        "status": "no_data_crop",
+        "step_seconds": 0.0014413000317290425,
+        "error": null,
+        "transcript": "ਜਲੰਧਰ ਚ ਸਰਸੋਂ ਦਾ rate ਦੱਸੋ।",
+        "timings": {
+          "stt_client": 0.7353759999386966,
+          "stt_convert": 3.474374399986118,
+          "stt_api": 0.16362619400024414,
+          "stt_server": 0.16211986541748047,
+          "agent": 0.0014413000317290425
+        },
+        "config": "paen_codemix_ctx",
+        "request_id": "35990202-0208-422d-a905-133d6c3805b1",
+        "detected_language": "pa-IN",
+        "truncated": false,
+        "score": {
+          "crop_ok": true,
+          "mandi_ok": true,
+          "slots_ok": true,
+          "status_ok": true,
+          "day_ok": null
+        }
+      },
+      "attribution": "ok"
+    }
+  ],
+  "tts_rows": [
+    {
+      "chars": 143,
+      "error": null,
+      "http_seconds": 2.562985899974592,
+      "client_seconds": 2.5630579000571743
+    },
+    {
+      "chars": 146,
+      "error": null,
+      "http_seconds": 2.3832604000344872,
+      "client_seconds": 2.383323899935931
+    },
+    {
+      "chars": 155,
+      "error": null,
+      "http_seconds": 2.678844999987632,
+      "client_seconds": 2.6789102000184357
+    },
+    {
+      "chars": 148,
+      "error": null,
+      "http_seconds": 2.534954100032337,
+      "client_seconds": 2.5350208999589086
+    },
+    {
+      "chars": 146,
+      "error": null,
+      "http_seconds": 2.7224213000154123,
+      "client_seconds": 2.7224828000180423
+    },
+    {
+      "chars": 157,
+      "error": null,
+      "http_seconds": 3.4745571999810636,
+      "client_seconds": 3.4746235000202432
+    },
+    {
+      "chars": 158,
+      "error": null,
+      "http_seconds": 1.9665174999972805,
+      "client_seconds": 1.966586200054735
+    },
+    {
+      "chars": 147,
+      "error": null,
+      "http_seconds": 1.9267412000335753,
+      "client_seconds": 1.9268078999593854
+    },
+    {
+      "chars": 143,
+      "error": null,
+      "http_seconds": 1.8450879999436438,
+      "client_seconds": 1.8451546999858692
+    }
+  ],
+  "tts_summary": {
+    "n": 9,
+    "n_ok": 9,
+    "p50": 2.534954100032337,
+    "p95": 3.1737028399948026,
+    "max": 3.4745571999810636
+  }
+}

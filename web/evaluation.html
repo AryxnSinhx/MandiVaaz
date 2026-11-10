@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f6ed">
+  <meta name="description" content="Mandi Vaaz model and pipeline evaluation: one recorded 18-clip Punjabi and Punglish audio run, with latency and limitations.">
+  <title>Mandi Vaaz · Evaluation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg:#f8f6ed; --surface:#fffdf8; --surface-2:#f2f0e5; --surface-3:#e8efe5;
+      --ink:#18352d; --muted:#6e7d73; --line:#e2e7db; --pine:#174b3c; --green:#34785f;
+      --green-soft:#dcebe0; --gold:#e8ad4b; --gold-soft:#fbefd7; --coral:#d8785c;
+      --coral-soft:#fae5dc; --teal:#4d9290; --teal-soft:#dcefed; --plum:#80688f;
+      --plum-soft:#eee6f1; --red:#b84f4a; --shadow:0 20px 55px rgba(34,61,48,.075);
+    }
+    :root[data-theme="dark"] {
+      color-scheme:dark; --bg:#101b19; --surface:#192824; --surface-2:#20332d; --surface-3:#243b32;
+      --ink:#edf4ec; --muted:#a6b6aa; --line:#30453c; --pine:#b3ddc2; --green:#88c6a2;
+      --green-soft:#284538; --gold:#f0c477; --gold-soft:#473b28; --coral:#f09b7e;
+      --coral-soft:#49342d; --teal:#83c2bd; --teal-soft:#263f3e; --plum:#c4a4d2;
+      --plum-soft:#3d3346; --red:#ef8a80; --shadow:0 20px 55px rgba(0,0,0,.22);
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;background:radial-gradient(ellipse at 5% 3%,rgba(232,173,75,.15),transparent 27rem),radial-gradient(ellipse at 94% 8%,rgba(77,146,144,.12),transparent 27rem),var(--bg);color:var(--ink);font:14px/1.58 "DM Sans",system-ui,sans-serif}
+    a{color:var(--green);text-decoration:none;font-weight:800}a:hover{text-decoration:underline}
+    .wrap{width:min(1160px,calc(100% - 44px));margin:auto}
+    .top{min-height:80px;display:flex;align-items:center;justify-content:space-between;gap:18px;border-bottom:1px solid var(--line)}
+    .brand{display:flex;align-items:center;gap:11px;color:var(--ink);font:800 1.13rem Manrope,sans-serif;letter-spacing:-.05em}
+    .brand-mark{width:40px;height:40px;display:grid;place-items:center;border-radius:14px;color:#fff;background:linear-gradient(145deg,#245f4b,#39846a);box-shadow:0 8px 20px rgba(35,100,73,.2)}
+    .brand-mark svg{width:22px;height:22px}.brand span:last-child{color:var(--green)}
+    .tools{display:flex;align-items:center;gap:13px}.toggle{min-height:38px;padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);cursor:pointer;font-size:.77rem;font-weight:800}
+    .hero{position:relative;overflow:hidden;isolation:isolate;margin:35px 0 18px;padding:35px 40px;border-radius:28px;color:#f8f7ed;background:linear-gradient(115deg,#153f35,#1b5946 58%,#2c7464);box-shadow:0 24px 60px rgba(21,63,53,.16);display:grid;grid-template-columns:1fr auto;align-items:center;gap:24px}
+    .hero:after{content:"";position:absolute;z-index:-1;width:360px;height:360px;right:5%;top:-230px;border:1px solid rgba(255,255,255,.18);border-radius:50%;box-shadow:0 0 0 28px rgba(255,255,255,.025),0 0 0 58px rgba(255,255,255,.025)}
+    .eyebrow{color:#f6d99e;font-size:.7rem;font-weight:900;letter-spacing:.13em;text-transform:uppercase}
+    h1{margin:10px 0 9px;font:800 clamp(2rem,4.5vw,3.25rem)/1.06 Manrope,sans-serif;letter-spacing:-.07em}h1 span{color:#f3c36f}
+    .hero p{max-width:720px;margin:0;color:rgba(249,250,242,.8);font-size:.91rem}
+    .run{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.run span{padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.17);background:rgba(255,255,255,.09);color:#fff;font-size:.7rem;font-weight:750}
+    .score-orb{width:144px;height:144px;display:grid;place-items:center;align-content:center;border:1px solid rgba(255,255,255,.22);border-radius:50%;background:rgba(255,255,255,.09);box-shadow:0 0 0 12px rgba(255,255,255,.035);text-align:center}
+    .score-orb strong{display:block;font:800 2.1rem/1 Manrope,sans-serif;letter-spacing:-.07em;color:#f4ca7b}.score-orb span{margin-top:7px;font-size:.68rem;color:rgba(255,255,255,.8);font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+    .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}.card{min-width:0;padding:20px;border:1px solid var(--line);border-radius:20px;background:var(--surface);box-shadow:var(--shadow)}
+    .metric{position:relative;overflow:hidden}.metric:before{content:"";position:absolute;width:90px;height:90px;right:-36px;top:-40px;border-radius:50%;background:var(--surface-3)}.metric:nth-child(2):before{background:var(--teal-soft)}.metric:nth-child(3):before{background:var(--gold-soft)}.metric:nth-child(4):before{background:var(--plum-soft)}
+    .metric .label{position:relative;color:var(--muted);font-size:.72rem;font-weight:800}.metric strong{position:relative;display:block;margin:9px 0 2px;color:var(--pine);font:800 2.15rem/1.1 Manrope,sans-serif;letter-spacing:-.07em}.metric small{position:relative;color:var(--muted);font-size:.74rem}
+    .section{margin:23px 0}.section-heading{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:0 0 12px}.section-heading h2{margin:0;font:800 1.08rem Manrope,sans-serif;letter-spacing:-.04em}.section-heading p{margin:0;color:var(--muted);font-size:.75rem}
+    .two{display:grid;grid-template-columns:1.12fr .88fr;gap:13px}.card h3{margin:0 0 15px;font:800 1rem Manrope,sans-serif;letter-spacing:-.035em}
+    .barrow{display:grid;grid-template-columns:112px minmax(50px,1fr) 66px;gap:10px;align-items:center;margin:13px 0;font-size:.79rem}.track{height:10px;border-radius:99px;background:var(--surface-2);overflow:hidden}.fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--green),var(--teal))}.fill.gold{background:linear-gradient(90deg,#d99b3e,var(--gold))}.fill.coral{background:linear-gradient(90deg,var(--coral),var(--red))}.barrow b{text-align:right;font-size:.76rem;font-variant-numeric:tabular-nums}
+    .sub{margin:12px 0 0;color:var(--muted);font-size:.75rem}.table-wrap{overflow-x:auto}.table{width:100%;border-collapse:collapse;font-size:.79rem;white-space:nowrap}.table th,.table td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line)}.table th{color:var(--muted);font-size:.66rem;text-transform:uppercase;letter-spacing:.09em}.table tbody tr:last-child td{border-bottom:0}
+    .badge{display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:99px;background:var(--green-soft);color:var(--pine);font-size:.68rem;font-weight:900}.badge:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green)}.badge.gold{background:var(--gold-soft);color:#91631d}.badge.gold:before{background:var(--gold)}
+    .latency-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.latency{padding:16px;border:1px solid var(--line);border-radius:16px;background:var(--surface-2)}.latency .k{color:var(--muted);font-size:.7rem;font-weight:800}.latency strong{display:block;margin:6px 0 2px;color:var(--pine);font:800 1.45rem Manrope,sans-serif;letter-spacing:-.05em}.latency small{color:var(--muted);font-size:.69rem}
+    .context-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.note{padding:19px 20px;border:1px solid var(--line);border-radius:19px;background:var(--surface)}.note.gold{background:linear-gradient(135deg,var(--gold-soft),var(--surface));border-color:color-mix(in srgb,var(--gold) 38%,var(--line))}.note.plum{background:linear-gradient(135deg,var(--plum-soft),var(--surface));border-color:color-mix(in srgb,var(--plum) 30%,var(--line))}.note h3{margin:0 0 8px;font:800 .96rem Manrope,sans-serif}.note p{margin:0;color:var(--muted);font-size:.8rem}.note ul{margin:9px 0 0;padding-left:18px;color:var(--muted);font-size:.78rem}.note li{margin:4px 0}
+    .warning{padding:19px 21px;border:1px solid color-mix(in srgb,var(--coral) 36%,var(--line));border-left:4px solid var(--coral);border-radius:18px;background:var(--coral-soft);color:var(--ink);font-size:.82rem}.warning strong{display:block;margin-bottom:5px;font:800 .96rem Manrope,sans-serif}.foot{padding:25px 0 42px;color:var(--muted);font-size:.73rem;text-align:center}
+    @media(max-width:850px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:1fr}.latency-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:560px){.wrap{width:min(100% - 28px,1160px)}.top{min-height:70px}.hero{margin-top:23px;padding:25px 22px;grid-template-columns:1fr;border-radius:23px}.score-orb{width:105px;height:105px;margin:6px 0 0 8px}.score-orb strong{font-size:1.6rem}.score-orb span{font-size:.59rem}.grid{gap:9px}.card{padding:15px;border-radius:17px}.metric strong{font-size:1.75rem}.section-heading{align-items:start;flex-direction:column}.barrow{grid-template-columns:88px minmax(35px,1fr) 55px;gap:7px;font-size:.74rem}.context-grid{grid-template-columns:1fr}.tools{gap:7px}.tools a{font-size:.76rem}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+  <header class="top wrap">
+    <a class="brand" href="index.html" aria-label="Mandi Vaaz home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V10"/><path d="M12 14c-5 0-8-3-8-8 5 0 8 3 8 8Z"/><path d="M12 17c0-4 3-7 8-7 0 5-3 7-8 7Z"/></svg></span><span>mandi<span>vaaz</span> / evaluation</span></a>
+    <div class="tools"><a href="index.html">← Voice assistant</a><button class="toggle" id="theme" type="button">☾ Dark mode</button></div>
+  </header>
+  <main class="wrap">
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Model & pipeline evaluation</div>
+        <h1>Promising results.<br><span>With the context included.</span></h1>
+        <p>One recorded audio run of Punjabi and Punglish mandi-price requests. This dashboard describes the supplied run; it is not a claim of live price accuracy or broad farmer-level performance.</p>
+        <div class="run"><span>10 Nov 2026 · 02:51 IST</span><span>18 read-aloud clips</span><span>Prisma v3.0 · paen_codemix_ctx</span></div>
+      </div>
+      <div class="score-orb" aria-label="18 out of 18 slots correct"><strong>18 / 18</strong><span>slots correct<br>in this run</span></div>
+    </section>
+
+    <section class="grid" aria-label="Headline metrics">
+      <article class="card metric"><div class="label">Audio slot accuracy</div><strong>100%</strong><small>18 / 18 crop + mandi correct</small></article>
+      <article class="card metric"><div class="label">Reply routing accuracy</div><strong>100%</strong><small>18 / 18 expected statuses</small></article>
+      <article class="card metric"><div class="label">STT / API failures</div><strong>0</strong><small>No failed calls in this run</small></article>
+      <article class="card metric"><div class="label">TTS generation</div><strong>9 / 9</strong><small>Real Punjabi replies generated</small></article>
+    </section>
+
+    <section class="section">
+      <div class="section-heading"><h2>Recognition & agent behaviour</h2><p>Audio → transcription → parser → agent · n = 18</p></div>
+      <div class="two">
+        <article class="card">
+          <h3>Audio pipeline accuracy</h3>
+          <div class="barrow"><span>Crop</span><div class="track"><div class="fill" style="width:100%"></div></div><b>18 / 18</b></div>
+          <div class="barrow"><span>Mandi</span><div class="track"><div class="fill" style="width:100%"></div></div><b>18 / 18</b></div>
+          <div class="barrow"><span>Crop + mandi</span><div class="track"><div class="fill" style="width:100%"></div></div><b>18 / 18</b></div>
+          <div class="barrow"><span>Reply status</span><div class="track"><div class="fill" style="width:100%"></div></div><b>18 / 18</b></div>
+          <div class="barrow"><span>Day · labelled</span><div class="track"><div class="fill gold" style="width:100%"></div></div><b>2 / 2</b></div>
+          <p class="sub">Day recognition has only two labelled examples. Treat 2/2 as a very small diagnostic, not a reliable estimate.</p>
+        </article>
+        <article class="card">
+          <h3>Evaluation slices</h3>
+          <div class="table-wrap"><table class="table"><thead><tr><th>Slice</th><th>Clips</th><th>Slots</th><th>Status</th></tr></thead><tbody>
+            <tr><td>Punjabi</td><td>9</td><td>9 / 9</td><td>9 / 9</td></tr>
+            <tr><td>Punglish</td><td>9</td><td>9 / 9</td><td>9 / 9</td></tr>
+            <tr><td>Answer</td><td>9</td><td>9 / 9</td><td>9 / 9</td></tr>
+            <tr><td>Clarify</td><td>3</td><td>3 / 3</td><td>3 / 3</td></tr>
+            <tr><td>Unsupported</td><td>6</td><td>6 / 6</td><td>6 / 6</td></tr>
+          </tbody></table></div>
+          <p class="sub">The audio set contained 9 Punjabi and 9 Punglish clips. It contained no Hindi-mixed clips.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading"><h2>Latency profile</h2><p>Seconds · first call discarded · n = 18 unless stated</p></div>
+      <article class="card">
+        <h3>Median time by stage · p50</h3>
+        <div class="latency-grid">
+          <div class="latency"><div class="k">STT HTTP round trip</div><strong>0.73 s</strong><small>p95 0.96 s · max 1.19 s</small></div>
+          <div class="latency"><div class="k">Audio conversion</div><strong>0.14 s</strong><small>p95 1.49 s · max 3.47 s</small></div>
+          <div class="latency"><div class="k">Agent + database</div><strong>0.01 s</strong><small>p95 0.02 s · max 0.02 s</small></div>
+          <div class="latency"><div class="k">Timbre TTS · n = 9</div><strong>2.53 s</strong><small>p95 3.17 s · max 3.47 s</small></div>
+        </div>
+        <div style="margin-top:19px">
+          <div class="barrow"><span>STT HTTP</span><div class="track"><div class="fill" style="width:29%"></div></div><b>0.73 s</b></div>
+          <div class="barrow"><span>Conversion</span><div class="track"><div class="fill gold" style="width:5.5%"></div></div><b>0.14 s</b></div>
+          <div class="barrow"><span>Agent + DB</span><div class="track"><div class="fill" style="width:.5%"></div></div><b>0.01 s</b></div>
+          <div class="barrow"><span>TTS HTTP</span><div class="track"><div class="fill" style="width:100%"></div></div><b>2.53 s</b></div>
+        </div>
+        <p class="sub">STT HTTP round trip and ffmpeg conversion are separate measurements; the STT HTTP value does not include conversion. The sum of stage medians is about 3.4 s, but this is not a measured browser end-to-end time and excludes recording, upload and playback.</p>
+      </article>
+    </section>
+
+    <section class="section">
+      <div class="section-heading"><h2>How to interpret this run</h2><p>Important context before quoting the numbers</p></div>
+      <div class="context-grid">
+        <article class="note gold">
+          <h3>Repeat-run variation</h3>
+          <p>A separate audio run on 9 Nov, using the same recorded code fingerprints, scored 16/18 crop + mandi slots. The 10 Nov run shown here scored 18/18. This variation is a reason to avoid presenting 100% as a stable general accuracy figure.</p>
+        </article>
+        <article class="note plum">
+          <h3>Language coverage</h3>
+          <p>This evaluation covers Punjabi and Punglish only: 9 clips in each group. Hindi-mixed input is experimental and was not validated by this 18-clip run. Replies are generated in Punjabi.</p>
+        </article>
+        <article class="note">
+          <h3>Data coverage</h3>
+          <p>The local Agmarknet snapshot ends around March 2026 and contains price records for potato, onion and tomato. Market coverage is uneven; these results do not establish the accuracy of today's live mandi prices.</p>
+        </article>
+        <article class="note">
+          <h3>What the test represents</h3>
+          <p>Prepared read-aloud questions, first-turn scoring, and 18 clips. Speaker identities and recording conditions were not fully documented in the run metadata. Spontaneous farmer speech, noisy market audio and other devices remain untested.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section warning">
+      <strong>Read the score with its uncertainty.</strong>
+      18/18 corresponds to an approximate 95% Wilson interval of 82–100%. That interval is wide because the sample is small. The test checks recognition of the requested crop and mandi plus the agent's expected response status; it does not prove the underlying price record is current or correct. Earlier runs and field tests should be retained alongside this result.
+    </section>
+
+    <footer class="foot">Source: eval/results/heldout_20261110_025157.json and matching text report · Metrics reproduced from the recorded run; no synthetic samples added.</footer>
+  </main>
+  <script>
+    (function(){
+      const root=document.documentElement,button=document.getElementById('theme');
+      let theme='light';
+      try{theme=localStorage.getItem('mandi-vaaz-theme')||'light';}catch(e){}
+      function apply(value){theme=value;root.dataset.theme=value;button.textContent=value==='dark'?'☀ Light mode':'☾ Dark mode';try{localStorage.setItem('mandi-vaaz-theme',value);}catch(e){}}
+      apply(theme==='dark'?'dark':'light');
+      button.addEventListener('click',()=>apply(theme==='dark'?'light':'dark'));
+    })();
+  </script>
+</body>
+</html>

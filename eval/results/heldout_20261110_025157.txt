@@ -1,0 +1,59 @@
+==========================================================================
+MANDI VAAZ - HELD-OUT EVALUATION
+==========================================================================
+Run at      : 2026-11-10T02:51:56+05:30
+Clips       : 18    mode: audio+text
+STT config  : requested=(stt.py default)   used=paen_codemix_ctx
+Fingerprints: aliases.py=da458bbaa623  parser.py=e8f608a3d116  agent.py=0fe1c5898f37  lookup.py=1c5f38fe8bfb  templates.py=3c5d91e3882f  stt.py=a654bb0cbfc8  mandi.db=542098bef2b8
+
+A. TYPED SENTENCE -> parser -> agent   (CEILING: perfect STT; not a real result)
+  crop correct             18/18 = 100.0%   95% CI 82-100%
+  mandi correct            18/18 = 100.0%   95% CI 82-100%
+  crop AND mandi correct   18/18 = 100.0%   95% CI 82-100%
+  reply status correct     18/18 = 100.0%   95% CI 82-100%
+  day correct (labelled)   1/2 =  50.0%   95% CI 9-91%
+
+B. AUDIO -> STT -> parser -> agent   (HEADLINE)
+  crop correct             18/18 = 100.0%   95% CI 82-100%
+  mandi correct            18/18 = 100.0%   95% CI 82-100%
+  crop AND mandi correct   18/18 = 100.0%   95% CI 82-100%
+  reply status correct     18/18 = 100.0%   95% CI 82-100%
+  day correct (labelled)   2/2 = 100.0%   95% CI 34-100%
+  STT/API failures (counted as wrong): 0
+  by group
+    answer       n= 9   slots 9/9   status 9/9
+    clarify      n= 3   slots 3/3   status 3/3
+    unsupported  n= 6   slots 6/6   status 6/6
+  by style (punjabi = Main Character, punglish = Mixed Vibes)
+    punglish     n= 9   slots 9/9   status 9/9
+    punjabi      n= 9   slots 9/9   status 9/9
+
+C. WHERE END-TO-END CROP/MANDI ERRORS COME FROM
+  ok             18   typed and spoken both right
+  stt_caused      0   typed right, spoken wrong  -> STT / speech
+  parser_gap      0   typed wrong too           -> parser / aliases
+  parser_lucky    0   typed wrong, spoken right   -> parser fragile
+  stt_error       0   API call failed
+
+D. CLIPS THAT DID NOT PASS (slots or status wrong)
+  none
+
+E. LATENCY, seconds (first call discarded; small n)
+  stt_client   n=18  p50=  0.73  p95=  0.96  max=  1.19
+  stt_convert  n=18  p50=  0.14  p95=  1.49  max=  3.47
+  stt_api      n=18  p50=  0.15  p95=  0.19  max=  0.20
+  stt_server   n=18  p50=  0.15  p95=  0.18  max=  0.20
+  agent        n=18  p50=  0.01  p95=  0.02  max=  0.02
+  stt_client = whole STT call incl. ffmpeg; stt_api = Gnani-side end to end;
+  agent = parser + agent + SQLite lookup (no network)
+
+F. TTS (Timbre v3.0, real replies, first call discarded)
+  n=9 ok=9  http p50=2.53  p95=3.17  max=3.47
+
+HOW TO READ THIS (limits, printed on purpose)
+  - CI = Wilson 95% interval. At n=18 even 17/18 only supports 'true rate roughly 74-99%'.
+  - p95 with fewer than ~20 samples is almost the maximum; treat as indicative only.
+  - Sentences were READ from a sheet; natural farmer speech is messier.
+  - Valid as HELD-OUT only if aliases/parser/agent were NOT edited after seeing these clips:
+    compare the fingerprints above between runs. Numbers after tuning must be labelled 'tuned'.
+  - Browser-to-ear time is NOT measured here.

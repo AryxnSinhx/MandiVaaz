@@ -1,0 +1,28 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+.env
+
+node_modules/
+
+clips_manifest.csv
+
+#ZIP File
+*.zip
+
+*.bak
+
+#MISCELLANEOUS
+stt_test_out/
+apply_label_fix.py
+apply_lookup_fix.py
+apply_to_words_fix.py
+scripts/clips .opus/
+scripts/clips .wav/

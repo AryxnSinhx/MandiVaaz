@@ -1,0 +1,189 @@
+{
+  "_readme": "Held-out set for Mandi Vaaz. 'said' is the exact sentence to READ ALOUD (edit it to how you or your family would really say it BEFORE recording, never after seeing results). 'file' is the clip name in eval/heldout/ (any extension). crop/mandi use the lower-case keys of aliases.CROPS / aliases.MANDIS; null = not said. 'status' = what the agent should do on this first turn. 'day' only where a day word is said.",
+  "clips": [
+    {
+      "id": "p01",
+      "file": "p01",
+      "said": "ਲੁਧਿਆਣਾ ਮੰਡੀ ਵਿੱਚ ਆਲੂ ਦਾ ਭਾਅ ਕੀ ਚੱਲ ਰਿਹਾ ਹੈ?",
+      "style": "punjabi",
+      "group": "answer",
+      "crop": "potato",
+      "mandi": "ludhiana",
+      "status": "answer"
+    },
+    {
+      "id": "p02",
+      "file": "p02",
+      "said": "ਜਲੰਧਰ ਦੀ ਮੰਡੀ ਵਿੱਚ ਪਿਆਜ਼ ਦਾ ਰੇਟ ਦੱਸੋ ਜੀ",
+      "style": "punjabi",
+      "group": "answer",
+      "crop": "onion",
+      "mandi": "jalandhar",
+      "status": "answer"
+    },
+    {
+      "id": "p03",
+      "file": "p03",
+      "said": "ਖੰਨਾ ਮੰਡੀ ਵਿੱਚ ਟਮਾਟਰ ਕਿਸ ਭਾਅ ਵਿਕ ਰਹੇ ਹਨ?",
+      "style": "punjabi",
+      "group": "answer",
+      "crop": "tomato",
+      "mandi": "khanna",
+      "status": "answer"
+    },
+    {
+      "id": "p04",
+      "file": "p04",
+      "said": "ਪਟਿਆਲਾ ਵਿੱਚ ਆਲੂ ਕਿੰਨੇ ਦਾ ਹੈ?",
+      "style": "punjabi",
+      "group": "answer",
+      "crop": "potato",
+      "mandi": "patiala",
+      "status": "answer"
+    },
+    {
+      "id": "p05",
+      "file": "p05",
+      "said": "ਕੱਲ੍ਹ ਜਲੰਧਰ ਵਿੱਚ ਪਿਆਜ਼ ਦਾ ਕੀ ਭਾਅ ਸੀ?",
+      "style": "punjabi",
+      "group": "answer",
+      "crop": "onion",
+      "mandi": "jalandhar",
+      "status": "answer",
+      "day": "yesterday"
+    },
+    {
+      "id": "l01",
+      "file": "l01",
+      "said": "Patiala mandi vich tamatar da rate ki chal reha hai",
+      "style": "punglish",
+      "group": "answer",
+      "crop": "tomato",
+      "mandi": "patiala",
+      "status": "answer"
+    },
+    {
+      "id": "l02",
+      "file": "l02",
+      "said": "Bro Ludhiana mein pyaaz ka price batao",
+      "style": "punglish",
+      "group": "answer",
+      "crop": "onion",
+      "mandi": "ludhiana",
+      "status": "answer"
+    },
+    {
+      "id": "l03",
+      "file": "l03",
+      "said": "Jalandhar mandi mein tomato ka bhav kya hai",
+      "style": "punglish",
+      "group": "answer",
+      "crop": "tomato",
+      "mandi": "jalandhar",
+      "status": "answer"
+    },
+    {
+      "id": "l04",
+      "file": "l04",
+      "said": "Yesterday Khanna ch potato da rate kinna si",
+      "style": "punglish",
+      "group": "answer",
+      "crop": "potato",
+      "mandi": "khanna",
+      "status": "answer",
+      "day": "yesterday"
+    },
+    {
+      "id": "p06",
+      "file": "p06",
+      "said": "ਆਲੂ ਦਾ ਰੇਟ ਕੀ ਹੈ?",
+      "style": "punjabi",
+      "group": "clarify",
+      "crop": "potato",
+      "mandi": null,
+      "status": "clarify_mandi"
+    },
+    {
+      "id": "l05",
+      "file": "l05",
+      "said": "Pyaaz da rate ki chal reha hai",
+      "style": "punglish",
+      "group": "clarify",
+      "crop": "onion",
+      "mandi": null,
+      "status": "clarify_mandi"
+    },
+    {
+      "id": "l06",
+      "file": "l06",
+      "said": "Ludhiana mandi da rate dasso",
+      "style": "punglish",
+      "group": "clarify",
+      "crop": null,
+      "mandi": "ludhiana",
+      "status": "clarify_crop"
+    },
+    {
+      "id": "p07",
+      "file": "p07",
+      "said": "ਜਲੰਧਰ ਵਿੱਚ ਕਣਕ ਦਾ ਭਾਅ ਦੱਸੋ",
+      "style": "punjabi",
+      "group": "unsupported",
+      "crop": "wheat",
+      "mandi": "jalandhar",
+      "status": "no_data_crop",
+      "note": "label corrected to match the recording sheet that was read aloud"
+    },
+    {
+      "id": "p08",
+      "file": "p08",
+      "said": "ਬਰਨਾਲਾ ਮੰਡੀ ਵਿੱਚ ਆਲੂ ਦਾ ਭਾਅ ਕੀ ਹੈ?",
+      "style": "punjabi",
+      "group": "unsupported",
+      "crop": "potato",
+      "mandi": "barnala",
+      "status": "no_data_mandi"
+    },
+    {
+      "id": "p09",
+      "file": "p09",
+      "said": "ਪਟਿਆਲਾ ਵਿੱਚ ਨਰਮੇ ਦਾ ਰੇਟ ਦੱਸੋ",
+      "style": "punjabi",
+      "group": "unsupported",
+      "crop": "cotton",
+      "mandi": "patiala",
+      "status": "no_data_crop",
+      "note": "label corrected to match the recording sheet that was read aloud"
+    },
+    {
+      "id": "l07",
+      "file": "l07",
+      "said": "Moga mandi ch maize da bhaa ki hai",
+      "style": "punglish",
+      "group": "unsupported",
+      "crop": "maize",
+      "mandi": "moga",
+      "status": "no_data_crop"
+    },
+    {
+      "id": "l08",
+      "file": "l08",
+      "said": "Sangrur mandi vich pyaaz da rate ki hai",
+      "style": "punglish",
+      "group": "unsupported",
+      "crop": "onion",
+      "mandi": "sangrur",
+      "status": "no_data_mandi"
+    },
+    {
+      "id": "l09",
+      "file": "l09",
+      "said": "Jalandhar ch sarson da rate dasso",
+      "style": "punglish",
+      "group": "unsupported",
+      "crop": "mustard",
+      "mandi": "jalandhar",
+      "status": "no_data_crop"
+    }
+  ]
+}
