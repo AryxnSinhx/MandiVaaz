@@ -41,6 +41,7 @@ CROPS_PA = {
     "moong": "ਮੂੰਗੀ",
     "paddy": "ਝੋਨਾ",
     "maize": "ਮੱਕੀ",
+    "rice": "ਚਾਵਲ",
 }
 
 MANDIS_PA = {

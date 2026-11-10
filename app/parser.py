@@ -22,6 +22,37 @@ from app.aliases import CROPS, MANDIS, find_all, normalize
 EXACT = 95        # score at/above this = exact word or Indic alias glued inside a word
 AMBIG_GAP = 5     # two crops within this many points = ambiguous
 
+# Exclude common question/filler words from fuzzy crop matching. In
+# particular, "what" scores 88.9 against "wheat" in RapidFuzz, so the old
+# matcher misclassified questions such as "What is the price in Jalandhar?"
+# as wheat requests. Exact aliases are still matched normally; only these
+# generic tokens are removed before fuzzy matching.
+_CROP_MATCH_STOPWORDS = frozenset({
+    "what", "which", "when", "where", "who", "how", "much",
+    "is", "are", "was", "were", "the", "a", "an", "in", "at", "of",
+    "for", "to", "with", "and", "price", "rate", "market", "mandi",
+    "today", "please", "tell", "me", "ka", "ki", "kya", "hai", "mein",
+    "main", "da", "di", "de",
+})
+
+# Rice is not one of the crops supported by the price database. Recognise it
+# explicitly so the agent can reject it honestly instead of treating it as a
+# missing crop. Keep these as whole-token aliases: "rice" must not match the
+# ending of the word "price".
+UNSUPPORTED_CROP_ALIASES = {
+    "rice": ("rice", "chawal", "chaawal", "chaval", "ਚਾਵਲ", "ਚੌਲ", "चावल"),
+}
+
+
+def _find_unsupported_crops(text: str) -> dict:
+    """Find explicitly named unsupported crops by exact whole-token aliases."""
+    tokens = set(normalize(text).split())
+    found = {}
+    for crop, aliases in UNSUPPORTED_CROP_ALIASES.items():
+        if any(normalize(alias) in tokens for alias in aliases):
+            found[crop] = 100
+    return found
+
 _TODAY = {"ਅੱਜ", "ਅਜ", "aaj", "aj", "ajj", "आज", "today"}
 _KAL = {"ਕੱਲ੍ਹ", "ਕੱਲ", "ਕੱਲ੍ਹ", "kal", "कल", "yesterday"}
 _PAST = {"tha", "thi", "the", "था", "थी", "थे", "ਸੀ", "ਸੀ", "ਸੀਗਾ"}
@@ -39,7 +70,13 @@ def _day(tokens):
 
 def parse(text: str) -> dict:
     toks = normalize(text).split()
-    crops = find_all(text, CROPS)
+    # Remove generic question words before fuzzy crop matching, while keeping
+    # the existing typo-tolerance threshold for genuine crop words.
+    crop_text = " ".join(
+        token for token in toks if token not in _CROP_MATCH_STOPWORDS
+    )
+    crops = find_all(crop_text, CROPS)
+    crops.update(_find_unsupported_crops(text))
     mandis = find_all(text, MANDIS)
 
     crop, crop_score, ambiguous = None, 0, False
